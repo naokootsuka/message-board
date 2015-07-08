@@ -1,4 +1,4 @@
-class MessageController < ApplicationController
+class MessagesController < ApplicationController
   def index
     # Message を全て取得する。
     @messages = Message.all
