@@ -21,14 +21,14 @@ class MessagesController < ApplicationController
   
   def destroy
     @message.destroy
-    redirect_to root_path, notice: 'メッセージを削除しました'
+    redirect_to root_path, notice:'メッセージを削除しました'
   end
 
   ## ここから追記
   def create
     @message = Message.new(message_params)
     if @message.save
-      redirect_to root_path , notice: ’メッセージを保存しました’
+      redirect_to root_path , notice:'メッセージを保存しました'
     else
       # メッセージが保存できなかった時
       @messages = Message.all
@@ -40,9 +40,9 @@ class MessagesController < ApplicationController
   # ここから下はprivateメッソドとなる
   private
   def message_params
-    # params[:message]のパラメータでname , bodyのみ許可する。
-    # 返り値は ex:) {name: "入力されたname" , body: "入力されたbody", age: "入力されたage" }
-    params.require(:message).permit(:name, :body, :age)
+    # params[:message]のパラメータでname , age , bodyのみ許可する。
+    # 返り値は ex:) {name: "入力されたname" , age: "入力されたage" , body: "入力されたbody" }
+    params.require(:message).permit(:name, :age, :body)
   end
   
   def set_message
